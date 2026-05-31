@@ -1113,21 +1113,25 @@
         </a>
       </div>
     </div>
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-group">
-        <label class="form-label">Name</label>
-        <input class="form-input" type="text" placeholder="Your name" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <input class="form-input" type="email" placeholder="your@email.com" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Message</label>
-        <textarea class="form-textarea" placeholder="Your message..." required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;">Send Message</button>
-    </form>
+<!-- ── UPDATED CONTACT FORM BY MAMA ── -->
+<form class="contact-form" action="https://formspree.io/f/xredvrzv" method="POST" onsubmit="handleSubmit(event)">
+  <div class="form-group">
+    <label class="form-label">Name</label>
+    <!-- Formspree এর ডাটা ধরার জন্য name="name" অ্যাড করা হয়েছে -->
+    <input class="form-input" type="text" name="name" placeholder="Your name" required>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Email</label>
+    <!-- Formspree এর ডাটা ধরার জন্য name="email" অ্যাড করা হয়েছে -->
+    <input class="form-input" type="email" name="email" placeholder="your@email.com" required>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Message</label>
+    <!-- Formspree এর ডাটা ধরার জন্য name="message" অ্যাড করা হয়েছে -->
+    <textarea class="form-textarea" name="message" placeholder="Your message..." required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;">Send Message</button>
+</form>
   </div>
 </section>
 
