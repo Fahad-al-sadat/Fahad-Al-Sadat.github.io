@@ -1174,6 +1174,47 @@
       a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
     });
   });
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwVIRHuGJZVSkDoNbFVvXqP_8yHu8pzfuBgh7032fmRvAGaZo4tqmMWAeU9X14zEVYb/exec";
+
+async function handleSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const btn = form.querySelector("button[type=submit]");
+  const fd = new FormData(form);
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: fd,
+      headers: { Accept: "application/json" }
+    });
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({
+        name: fd.get("name"),
+        email: fd.get("email"),
+        subject: "Portfolio contact",
+        message: fd.get("message")
+      })
+    }).catch(function () {});
+
+    if (!res.ok) throw new Error("Formspree failed");
+    form.reset();
+    btn.textContent = "Sent!";
+  } catch (err) {
+    btn.textContent = "Failed, try again";
+  } finally {
+    setTimeout(function () {
+      btn.disabled = false;
+      btn.textContent = "Send Message";
+    }, 3000);
+  }
+}
 </script>
 </body>
 </html>
